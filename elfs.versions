@@ -1,0 +1,226 @@
+STOPPED: implementation of the time checkbox, with testik
+
+- removed
++ added
+? ideas
+! to do
+
+TODO: 
+_____
+
+! 	transform dead ants to... food?
+! 	remove a constant actions-map
+! 	add a pick-up-action-at-random for a set of params
+! 	now, any more params can be added transparently
+
+
+!!! create the second variety which would satisfy the needs of the first:
+	 - to immitate a simbiosis: they should survive only together
+
+!! 	make checkboxes active, such that one doesn't need a button Time/Light
+
+!?	the idea is to split the "do-behave" of the Being in three(?) parts:
+		1. look-around / undergo = get the worlds parameters / to receive some impact 
+		2. behave  = do some actions
+		3. post-action / post-mortem  = ... / report death 
+
+
+HISTORY:
+________
+
+110913, elfs v.1.41
+	. no changes, just a back-up before a try to implement:
+		!?	the idea is to split the "do-behave" of the Being in three(?) parts:
+			1. look-around / undergo = get the worlds parameters / to receive some impact 
+			2. behave  = do some actions
+			3. post-action / post-mortem  = ... / report death 
+
+110822, elfs v.1.40
+	~ ...
+	+ ...
+
+110729, elfs v.1.39
+	+ memory printing fixed! 
+	+ Object.toString are overriden for some Memory's sub-classes
+
+110612, efls v.1.38
+	. in progress..
+	+ VolParams
+	+ memory-action displaying properly
+
+110602, elfs v.1.37
+	. in progress..
+	+ memory
+	+ add-mem-action
+
+110526, elfs v.1.36
+	. stable, 
+	+ gui:
+	    + main-panel MouseListener: selects a being under the coords
+	    + following mode: click at a being, watch the state 
+	! it's time to give them some memory 
+	! keep the history? actions, number-of-acts...
+
+110525, elfs v.1.35
+	. with a stand-alone version + make_clj_jar.sh script
+	+ gui:
+		+ dead being has a purple head
+		+ info panel: button, coordinates
+	~ numerous bugfixes
+
+110523, elfs v.1.34
+	. huge changes!
+	~ the-time and the-light are separated now: two sets of *-functions
+	+ light-on/off button
+	+ render-place-light-off = paints it gray
+	+ JSpinner added: to control ant/animation time interval A=B/3
+
+110533, elfs v.1.33
+	. working version
+	+ step-the-world (+ button)
+	+ age of a Being.
+
+110519, elfs v.1.32
+	. there a super gluk!
+	-> elfs_being.clj: replace 'get-int-params' by anything and it 
+	   won't find it anymore...!!?!? 
+
+110519, elfs v.1.31
+	. a better re-arranged v.1.30 
+	~ create-* fns are renamed to let-there-be-* fns ;)
+	+ a destroy-the-world button added
+
+110517, elfs v.1.30
+	. a new complete working version!!! 
+	~ huge changes of the 'operational' functions
+	  + elfs-init
+	  + elfs-re-init
+	  + elfs-start
+	  + elfs-stop
+	  + create-the-world -> world (2-d array)
+	  + create-the-live  -> beings (agents)
+	  + create-the-space -> gui (frame, panel)
+
+110517, elfs v.1.25
+	. working on gui changes.. buttons
+	. elfs-init doesn't re-initialize the frame & panel... 
+
+
+110517, elfs v.1.24
+	. in the middle of the changes... 
+	~ Being. contains a Genome!
+	~ files structure changes:
+	  + elfs_gui.clj
+	  - elfs_agents.clj
+
+110517, elfs v.1.23 - lost!
+
+110517, elfs v.1.22
+	. working, stable, complete
+	+ added some predefined action in pick-action (for debugging)
+	+ every action-* of Being has a post-condition:
+	  {:post [(instance? elfs.elfs-main.Being %)]}
+
+110516
+	? another way of evolution:
+	  now a ant has got an actions-map at the birth (filled randomely by actions)
+	  the idea is to let him choose an action randomly every time (every behaving-step)
+	  and keep the selected action recorded in his "memory"
+	  maybe even evaluate the result of every selected and completed action?.. but how?... 
+	  (I don't want to decide for them, it must be on theire own choice... )
+	  + wouldn't need the complicated recursion to create actions-map anymore!
+	  - .... 
+
+
+110515, elfs v.1.21
+	. working
+	+ action-graze
+	+ being-appease
+	! need to be able to specify actions-map!!!
+
+110513, elfs v.1.20
+	. in a sense, a complete version
+	+ Daily actions: 
+	   action-wander
+	   action-forage
+	+ Prime actions:
+	   being-turn-to
+	   being-go-forward
+	! evolve the GUI: line/column numbers, a stepping button
+	? GUI: display the elf's parameters, select an elf to display... 
+
+110512, elfs v.1.16
+	. a working save
+	~ General changes is the functions logic (about ext-params-getting)
+	~ changes in Being... protocols, record... 
+
+110508, elfs v.1.15
+	. seems to be stable and complete.
+	+ Being can die now. 
+	+ food-to-energy, energy-losses
+
+110508, elfs v.1.14
+	. just a working save...
+	~ a lot of changes: ext-conds, actions-map building,...
+	
+110504, elfs v.1.13
+	. just a working save...
+	~ ExtConds are being modified. triplets of food/food-around/food-dir, 
+	  damage/danger-around/danger-dir,...
+	
+
+110427, elfs v.1.12
+	- Great changes. "react-fn" is implemented!
+	! to make an "actions-map" specific for an elf. put it to... genome?
+	! an only action-fn is wander (without any expenses!) => customize it.  
+	? why did I removed the c-tor for Being?... Now I need to add the Genome and 
+	  it would be good to only change the c-tor... strange... 
+
+110215, elfs v.1.11
+
+	- actions-selector implemented as a N-dimentional map of conditions
+	  (elfs-utils.clj)
+
+110207, elfs v.1.10
+
+	- finally, there's a backtrace on exceptions! (print-e-backtrace e count)
+
+110207, elfs v.1.03
+
+	- stack-tracing! for agents' functions!!! (try/catch) 
+
+110204, elfs v.1.02 bis (it's been a while)
+	
+	- nothing || don't remember ;)
+	- a constructor for the class Being was added! (need reallY?)
+
+	+ an idea: 
+	- i might should remove all the 'getters' of the classes (e.g. Being)
+
+	+ some ideas:
+	- play with java's Thread priorities. Differ them for the ants.
+
+110116, elfs v.1.02
+
+	- temporary
+
+
+110109, elfs v.1.01
+
+	- It's moving! Just a simple beghave to move straight forward. 
+
+	
+110108, elfs v.1.00
+
+	- Huge changes! The agent isn't a 'loc' anymore, but a 'being' :
+		=> 'do-behave' can be 'send-off' to the 'Being.' directly
+		=> 'place' must be taken as (place (get-loc being))
+
+	
+110107, elfs v.0.10
+
+	- First experience with 'defrecord'+'defprotocol'
+	- There are 2 classes now: 
+		- Being
+		- Locus
+
